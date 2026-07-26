@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Point of Sale',
-  description: 'Aplikasi Kasir',
+  title: 'PERAK KONSEL',
+  description: 'Pendaftaran Pencari Kartu Kerja',
 }
 
 export default function RootLayout({ children, }: { children: React.ReactNode}) {

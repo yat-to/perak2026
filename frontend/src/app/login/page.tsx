@@ -42,9 +42,9 @@ export default function LoginPage() {
         </div>
         
         <div className="relative z-10 text-white max-w-lg">
-          <h1 className="text-5xl font-bold mb-6 leading-tight">Sistem Point of Sales</h1>
+          <h1 className="text-5xl font-bold mb-6 leading-tight">Perak Konsel</h1>
           <p className="text-lg text-indigo-100/90 leading-relaxed">
-            Kelola penjualan, inventaris, dan laporan bisnis Anda dengan lebih mudah, cepat, dan terintegrasi dalam satu platform modern.
+            Platform Layanan Masyarakat Pendaftaran Kartu Pencari Kerja untuk menghadirkan layanan publik yang cepat, mudah, dan transparan.
           </p>
         </div>
       </div>
@@ -78,7 +78,6 @@ export default function LoginPage() {
                   type="text"
                   value={form.username}
                   onChange={(e) => setForm({ ...form, username: e.target.value })}
-                  placeholder="admin@example.com"
                   required
                   className="block w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-gray-900 transition-colors"
                 />
@@ -90,9 +89,9 @@ export default function LoginPage() {
                 <label className="block text-sm font-medium text-gray-700">
                   Password
                 </label>
-                <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                {/* <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
                   Lupa password?
-                </a>
+                </a> */}
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -102,7 +101,6 @@ export default function LoginPage() {
                   type="password"
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  placeholder="••••••••"
                   required
                   className="block w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-gray-900 transition-colors"
                 />
@@ -129,7 +127,7 @@ export default function LoginPage() {
           </form>
 
           <p className="mt-8 text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Sistem POS. All rights reserved.
+            &copy; {new Date().getFullYear()} All rights reserved.
           </p>
         </div>
       </div>
