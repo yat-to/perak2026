@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Shield Outline -->
+  <path d="M50 4L88 18V50C88 74 50 96 50 96C50 96 12 74 12 50V18L50 4Z" fill="#1E3A8A" stroke="#F59E0B" stroke-width="4"/>
+  <path d="M50 12L80 23V49C80 69 50 88 50 88C50 88 20 69 20 49V23L50 12Z" fill="#0284C7" fill-opacity="0.2"/>
+  
+  <!-- Star at top -->
+  <polygon points="50,18 53,27 62,27 55,32 58,40 50,35 42,40 45,32 38,27 47,27" fill="#FCD34D"/>
+
+  <!-- Paddy & Cotton (Kemakmuran) -->
+  <path d="M28 58C30 45 42 42 50 42C58 42 70 45 72 58" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Anchor / Anoa / Regional symbol elements -->
+  <circle cx="50" cy="56" r="14" fill="#FFFFFF"/>
+  <path d="M42 56L48 62L58 50" stroke="#1E3A8A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Banner text base -->
+  <rect x="22" y="74" width="56" height="12" rx="4" fill="#F59E0B"/>
+  <text x="50" y="82.5" font-family="system-ui, sans-serif" font-weight="800" font-size="6.5" fill="#1E293B" text-anchor="middle" letter-spacing="0.5">
+    KONSEL
+  </text>
+</svg>
