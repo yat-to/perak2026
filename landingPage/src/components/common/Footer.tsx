@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   MapPin,
   Phone,
@@ -14,38 +15,28 @@ import {
 } from 'lucide-react';
 
 export default function Footer() {
-  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:3000/login';
+  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL;
 
   return (
-    <footer className="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-slate-800 text-slate-400 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Grid 4 Kolom */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
           {/* Kolom 1: Profil Portal */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-xl shadow-md">
-                P
-              </div>
-              <div>
-                <span className="text-xl font-black text-white tracking-tight">PERAK</span>
-                <span className="ml-1.5 text-xs font-bold px-1.5 py-0.5 rounded bg-blue-900/80 text-blue-300 border border-blue-700">
-                  KONSEL
-                </span>
-                <p className="text-[11px] text-slate-400 mt-0.5">Kabupaten Konawe Selatan</p>
-              </div>
-            </div>
+            <Link href="#beranda" className="inline-block bg-white p-2.5 rounded-xl shadow-xs hover:opacity-95 transition-opacity">
+              <Image
+                src="/logo.png"
+                alt="Logo PERAK Konsel"
+                width={180}
+                height={56}
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
 
             <p className="text-xs text-slate-400 leading-relaxed">
               Portal Layanan Publik Digital Penerbitan dan Pencetakan Kartu Tanda Bukti Pendaftaran Pencari Kerja (AK-1 / Kartu Kuning) bagi masyarakat Kabupaten Konawe Selatan.
             </p>
-
-            <div className="pt-2 flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/60 text-emerald-400 border border-emerald-800/60 text-xs font-medium">
-                <Shield className="w-3.5 h-3.5" />
-                Layanan Resmi 100% Gratis
-              </span>
-            </div>
           </div>
 
           {/* Kolom 2: Navigasi Layanan Publik */}
@@ -123,7 +114,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://konaweselatankab.bps.go.id"
+                  href="https://konselkab.bps.go.id"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 hover:text-blue-400 transition-colors"
