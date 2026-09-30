@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 export default function ContactSection() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_HELPDESK || '6281234567890';
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_HELPDESK;
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     'Halo Helpdesk PERAK Konsel, saya ingin bertanya seputar pendaftaran/cetak Kartu Kuning (AK-1)...'
   )}`;
@@ -22,10 +22,6 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200">
-            <Building className="w-3.5 h-3.5" />
-            Layanan Informasi & Pengaduan
-          </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
             Hubungi Disnakertrans Konawe Selatan
           </h2>
@@ -148,7 +144,7 @@ export default function ContactSection() {
               <div className="h-64 sm:h-72 w-full bg-slate-200 relative flex items-center justify-center p-4">
                 <iframe
                   title="Peta Lokasi Kantor Bupati & Disnakertrans Konawe Selatan"
-                  src="https://maps.google.com/maps?q=Kompleks+Perkantoran+Pemerintah+Daerah+Konawe+Selatan+Andoolo&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d774.7084860946895!2d122.28074042789112!3d-4.336996780929595!2m3!1f0!2f4.2470004779637804e-7!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1790739493389!5m2!1sen!2sus"
                   className="w-full h-full border-0 rounded-2xl"
                   loading="lazy"
                 />

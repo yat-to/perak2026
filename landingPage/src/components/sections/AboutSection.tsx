@@ -36,10 +36,6 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Kolom Kiri: Penjelasan Portal */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold border border-blue-200">
-              <Building2 className="w-3.5 h-3.5" />
-              Mengenal PERAK Konsel
-            </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Transformasi Digital Pelayanan Ketenagakerjaan Konawe Selatan
@@ -83,12 +79,6 @@ export default function AboutSection() {
               <span className="text-xs font-bold text-blue-700 uppercase tracking-wider">
                 Maklumat Pelayanan
               </span>
-              <h3 className="text-xl font-bold text-slate-900 mt-1">
-                Komitmen Kami Kepada Masyarakat
-              </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                Dikelola oleh Dinas Transmigrasi dan Tenaga Kerja Kab. Konawe Selatan
-              </p>
             </div>
 
             <div className="space-y-4">
@@ -105,21 +95,6 @@ export default function AboutSection() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Banner Disnakertrans Pengelola */}
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-900 text-amber-400 font-black flex items-center justify-center text-sm shrink-0">
-                KS
-              </div>
-              <div className="text-xs">
-                <p className="font-bold text-slate-900">
-                  Pemerintah Kabupaten Konawe Selatan
-                </p>
-                <p className="text-slate-500">
-                  Dinas Transmigrasi dan Tenaga Kerja (Disnakertrans)
-                </p>
-              </div>
             </div>
           </div>
         </div>
