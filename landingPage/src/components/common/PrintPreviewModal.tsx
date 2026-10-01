@@ -136,15 +136,26 @@ export default function PrintPreviewModal({
                 </div>
                 <div className="grid grid-cols-3 gap-2 border-b border-yellow-200 pb-1.5">
                   <span className="text-slate-600 font-medium">Nama Pencari Kerja</span>
-                  <span className="col-span-2 font-bold uppercase">{data.namaMasked}</span>
+                  <span className="col-span-2 font-bold uppercase">{data.nama}</span>
                 </div>
-                <div className="grid grid-cols-3 gap-2 border-b border-yellow-200 pb-1.5">
-                  <span className="text-slate-600 font-medium">Pendidikan Terakhir</span>
-                  <span className="col-span-2 font-medium">{data.pendidikanTerakhir || 'Diploma / Sarjana'}</span>
-                </div>
+                {(data.tempatLahir || data.tanggalLahir) && (
+                  <div className="grid grid-cols-3 gap-2 border-b border-yellow-200 pb-1.5">
+                    <span className="text-slate-600 font-medium">Tempat / Tgl Lahir</span>
+                    <span className="col-span-2 font-medium">
+                      {data.tempatLahir || '-'}
+                      {data.tanggalLahir ? `, ${data.tanggalLahir}` : ''}
+                    </span>
+                  </div>
+                )}
+                {data.jenisKelamin && (
+                  <div className="grid grid-cols-3 gap-2 border-b border-yellow-200 pb-1.5">
+                    <span className="text-slate-600 font-medium">Jenis Kelamin</span>
+                    <span className="col-span-2 font-medium">{data.jenisKelamin}</span>
+                  </div>
+                )}
                 <div className="grid grid-cols-3 gap-2 border-b border-yellow-200 pb-1.5">
                   <span className="text-slate-600 font-medium">Wilayah Domisili</span>
-                  <span className="col-span-2 font-medium">{data.kecamatan || 'Kabupaten Konawe Selatan'}</span>
+                  <span className="col-span-2 font-medium">{data.alamat || data.kecamatan || 'Kabupaten Konawe Selatan'}</span>
                 </div>
                 <div className="grid grid-cols-3 gap-2 border-b border-yellow-200 pb-1.5">
                   <span className="text-slate-600 font-medium">Tanggal Penerbitan</span>
