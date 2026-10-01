@@ -16,9 +16,20 @@ export interface TimelineStep {
 }
 
 export interface PengajuanDetail {
+  id?: number;
   nomorPengajuan: string;
   nikMasked: string;
+  nama?: string;
   namaMasked: string;
+  pdfUrl?: string;
+  pdfFileName?: string;
+  email?: string;
+  hp?: string;
+  tempatLahir?: string;
+  tanggalLahir?: string;
+  jenisKelamin?: string;
+  alamat?: string;
+  foto?: string;
   tanggalPengajuan: string;
   tanggalUpdate: string;
   status: StatusPengajuanType;
