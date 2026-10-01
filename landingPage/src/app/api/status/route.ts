@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { checkStatusPengajuan } from '@/services/statusService';
+import { checkStatusPengajuan } from '@/services/api';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
