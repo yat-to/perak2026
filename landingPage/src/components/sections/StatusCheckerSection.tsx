@@ -13,9 +13,10 @@ import {
   Info,
   Calendar,
   Sparkles,
+  ExternalLink,
 } from 'lucide-react';
 import { PengajuanDetail } from '../../types';
-import { checkStatusPengajuan } from '../../services/statusService';
+import { checkStatusPengajuan } from '../../services/api';
 import { formatDateId, getStatusStyle } from '../../utils/formatters';
 
 interface StatusCheckerSectionProps {
@@ -94,7 +95,7 @@ export default function StatusCheckerSection({
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Contoh: AK1-2026-0001 atau 16 digit NIK..."
+                placeholder="16 digit NIK..."
                 className="w-full pl-12 pr-32 py-4 text-sm sm:text-base bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white text-slate-900 transition-all placeholder:text-slate-400 font-medium"
               />
               <div className="absolute inset-y-2 right-2 flex items-center">
@@ -144,20 +145,28 @@ export default function StatusCheckerSection({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
               <div>
                 <div className="flex items-center gap-2.5 mb-1">
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
-                    {result.nomorPengajuan}
-                  </span>
-                  <span className="text-xs text-slate-500">•</span>
                   <span className="text-xs text-slate-500">
                     Diajukan: {formatDateId(result.tanggalPengajuan)}
                   </span>
                 </div>
                 <h3 className="text-lg font-black text-slate-900">
-                  {result.namaMasked}
+                  {result.nama}
                 </h3>
-                <p className="text-xs text-slate-500 font-mono">
-                  NIK Terdaftar: {result.nikMasked} ({result.kecamatan || 'Konawe Selatan'})
-                </p>
+                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-slate-500 mt-0.5">
+                  <span className="font-mono">NIK: {result.nikMasked}</span>
+                  {result.tempatLahir && (
+                    <>
+                      <span>•</span>
+                      <span>{result.tempatLahir}{result.tanggalLahir ? `, ${result.tanggalLahir}` : ''}</span>
+                    </>
+                  )}
+                  {result.jenisKelamin && (
+                    <>
+                      <span>•</span>
+                      <span>{result.jenisKelamin}</span>
+                    </>
+                  )}
+                </div>
               </div>
 
               {/* Status Badge */}
@@ -182,7 +191,7 @@ export default function StatusCheckerSection({
                 <Info className="w-4 h-4 shrink-0 mt-0.5" />
                 <div>
                   <span className="font-bold uppercase tracking-wider text-[11px] block mb-1">
-                    Catatan Verifikator Disnakertrans:
+                    Catatan Verifikator :
                   </span>
                   {result.catatanPetugas}
                 </div>
@@ -228,27 +237,42 @@ export default function StatusCheckerSection({
               </div>
             </div>
 
-            {/* CTA Cetak Kartu Kuning jika sudah disetujui */}
+            {/* CTA Cetak / Unduh Kartu Kuning jika sudah disetujui */}
             {result.canPrint && (
               <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100">
                 <div className="space-y-0.5 text-center sm:text-left">
                   <p className="text-xs font-bold text-emerald-900 flex items-center gap-1.5 justify-center sm:justify-start">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                    Pengajuan Telah Disetujui Secara Resmi
+                    Pengajuan Telah Selesai & Terverifikasi
                   </p>
                   <p className="text-[11px] text-slate-600">
-                    No. AK-1: <span className="font-mono font-bold text-slate-900">{result.nomorAk1}</span> (Berlaku s/d: {result.masaBerlaku})
+                    File Kartu Kuning (AK-1) resmi telah diterbitkan.
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => onPrintCard(result)}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 shadow-md shadow-emerald-600/20 transition-all"
-                >
-                  <Printer className="w-4 h-4" />
-                  <span>Cetak Kartu Kuning (AK-1)</span>
-                </button>
+                <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                  {result.pdfUrl ? (
+                    <a
+                      href={result.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 shadow-md shadow-emerald-600/20 transition-all"
+                    >
+                      <Printer className="w-4 h-4" />
+                      <span>Cetak Kartu Kuning (AK-1)</span>
+                      <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => onPrintCard(result)}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 shadow-md shadow-emerald-600/20 transition-all"
+                    >
+                      <Printer className="w-4 h-4" />
+                      <span>Cetak Kartu Kuning (AK-1)</span>
+                    </button>
+                  )}
+                </div>
               </div>
             )}
           </div>
