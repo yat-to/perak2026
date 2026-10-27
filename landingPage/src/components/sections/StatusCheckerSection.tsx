@@ -201,9 +201,9 @@ export default function StatusCheckerSection({
             {/* Stepper Timeline Pengajuan */}
             <div className="space-y-3">
               <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600">
-                Tahapan Pemrosesan Berkas:
+                Tahapan Pemrosesan Berkas (5 Tahap):
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
                 {result.timeline.map((t, idx) => (
                   <div
                     key={idx}
