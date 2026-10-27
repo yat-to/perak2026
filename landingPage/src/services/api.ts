@@ -89,14 +89,14 @@ export async function checkStatusPengajuan(
         const timeline: TimelineStep[] = [
           {
             step: 1,
-            title: 'Pengajuan Diterima',
+            title: 'Masyarakat Input Data',
             date: formatDateId(tanggalPengajuan),
             status: 'completed',
             desc: 'Data pendaftar telah tersimpan di sistem PERAK Konsel',
           },
           {
             step: 2,
-            title: 'Verifikasi Administrasi',
+            title: 'Operator Verifikasi Data',
             date: formatDateId(tanggalUpdate),
             status: statusType === 'disetujui' ? 'completed' : 'current',
             desc:
@@ -104,26 +104,38 @@ export async function checkStatusPengajuan(
                 ? row.keterangan || 'Terdapat dokumen yang perlu diperbaiki'
                 : statusType === 'disetujui'
                 ? 'Dokumen persyaratan telah dinyatakan lengkap dan sah'
-                : 'Pemeriksaan keabsahan dokumen oleh verifikator Disnakertrans',
+                : 'Pemeriksaan keabsahan dokumen oleh operator Disnakertrans',
           },
           {
             step: 3,
-            title: 'Persetujuan Pejabat Disnaker',
+            title: 'Persetujuan / Penolakan',
             date: statusType === 'disetujui' ? formatDateId(tanggalUpdate) : 'Menunggu',
             status: statusType === 'disetujui' ? 'completed' : 'pending',
             desc:
               statusType === 'disetujui'
-                ? 'Pengesahan dan penerbitan tanda bukti pendaftaran'
-                : 'Menunggu hasil verifikasi berkas',
+                ? 'Berkas pengajuan telah disetujui oleh pejabat verifikator'
+                : statusType === 'perlu_perbaikan'
+                ? 'Pengajuan perlu perbaikan dokumen'
+                : 'Menunggu peninjauan berkas oleh verifikator',
           },
           {
             step: 4,
-            title: 'Pencetakan Kartu AK-1',
+            title: 'Penandatangan TTE',
             date: statusType === 'disetujui' ? formatDateId(tanggalUpdate) : 'Menunggu',
             status: statusType === 'disetujui' ? 'completed' : 'pending',
             desc:
               statusType === 'disetujui'
-                ? 'Kartu Kuning sah resmi siap dicetak mandiri'
+                ? 'Dokumen AK-1 telah ditandatangani secara elektronik (TTE) resmi'
+                : 'Menunggu proses sertifikasi tanda tangan elektronik',
+          },
+          {
+            step: 5,
+            title: 'Pencetakan Kartu Selesai',
+            date: statusType === 'disetujui' ? formatDateId(tanggalUpdate) : 'Menunggu',
+            status: statusType === 'disetujui' ? 'completed' : 'pending',
+            desc:
+              statusType === 'disetujui'
+                ? 'Kartu Kuning ber-TTE resmi siap diunduh dan dicetak mandiri'
                 : 'Dokumen belum dapat diterbitkan',
           },
         ];
