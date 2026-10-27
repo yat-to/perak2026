@@ -28,7 +28,269 @@ export default function PrintPreviewModal({
   if (!isOpen || !data) return null;
 
   const handlePrint = () => {
-    window.print();
+    if (data.pdfUrl) {
+      window.open(data.pdfUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      window.print();
+      return;
+    }
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html lang="id">
+        <head>
+          <meta charset="utf-8">
+          <title>Kartu Kuning AK-1 - ${data.nama}</title>
+          <style>
+            @page {
+              size: A4 portrait;
+              margin: 12mm;
+            }
+            * { box-sizing: border-box; }
+            body {
+              font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+              color: #0f172a;
+              background: #fff;
+              margin: 0;
+              padding: 24px;
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
+            }
+            .card-wrapper {
+              max-width: 680px;
+              margin: 0 auto;
+              border: 2px solid #eab308;
+              background-color: #fefce8 !important;
+              border-radius: 12px;
+              padding: 24px;
+            }
+            .kop {
+              display: flex;
+              align-items: center;
+              border-bottom: 2px solid #0f172a;
+              padding-bottom: 12px;
+              margin-bottom: 14px;
+              gap: 16px;
+            }
+            .kop-logo {
+              width: 70px;
+              height: 85px;
+              object-fit: contain;
+            }
+            .kop-text {
+              flex: 1;
+              text-align: center;
+            }
+            .kop-text h4 {
+              margin: 0;
+              font-size: 13px;
+              font-weight: 700;
+              text-transform: uppercase;
+              color: #1e293b;
+            }
+            .kop-text h3 {
+              margin: 3px 0;
+              font-size: 16px;
+              font-weight: 900;
+              text-transform: uppercase;
+              color: #0f172a;
+            }
+            .kop-text p {
+              margin: 0;
+              font-size: 10px;
+              color: #64748b;
+            }
+            .card-title {
+              margin-top: 8px;
+              padding: 6px;
+              background: #fef08a !important;
+              border: 1px solid #facc15;
+              border-radius: 6px;
+              font-weight: 800;
+              font-size: 12px;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              text-align: center;
+            }
+            .meta-bar {
+              display: flex;
+              justify-content: space-between;
+              font-size: 11px;
+              background: rgba(255, 255, 255, 0.85);
+              padding: 6px 12px;
+              border-radius: 6px;
+              border: 1px solid #fde047;
+              margin: 12px 0 16px 0;
+            }
+            .grid-body {
+              display: flex;
+              gap: 16px;
+              align-items: flex-start;
+            }
+            .photo-col {
+              width: 120px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 10px;
+            }
+            .photo-box {
+              width: 105px;
+              height: 135px;
+              border: 1.5px solid #94a3b8;
+              background: #f1f5f9;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              font-size: 10px;
+              color: #64748b;
+              border-radius: 4px;
+            }
+            .qr-box {
+              border: 1px solid #cbd5e1;
+              background: #fff;
+              padding: 6px;
+              border-radius: 6px;
+              text-align: center;
+              font-size: 9px;
+              color: #475569;
+            }
+            .data-table {
+              flex: 1;
+              border-collapse: collapse;
+              width: 100%;
+              font-size: 12px;
+            }
+            .data-table tr {
+              border-bottom: 1px solid #fef08a;
+            }
+            .data-table td {
+              padding: 6px 4px;
+              vertical-align: top;
+            }
+            .data-table td.label {
+              color: #475569;
+              width: 35%;
+              font-weight: 500;
+            }
+            .data-table td.val {
+              font-weight: 700;
+              color: #0f172a;
+            }
+            .terms {
+              margin-top: 16px;
+              padding-top: 10px;
+              border-top: 1px dashed #eab308;
+              font-size: 9.5px;
+              color: #475569;
+              line-height: 1.4;
+            }
+            .terms ul {
+              margin: 4px 0 0 16px;
+              padding: 0;
+            }
+            @media print {
+              body { padding: 0; }
+              .card-wrapper { max-width: 100%; border: 1px solid #000; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="card-wrapper">
+            <div class="kop">
+              <img src="/logo-konsel.png" alt="Logo Pemda Konsel" class="kop-logo" />
+              <div class="kop-text">
+                <h4>Pemerintah Kabupaten Konawe Selatan</h4>
+                <h3>Dinas Transmigrasi dan Tenaga Kerja</h3>
+                <p>Kompleks Perkantoran Pemkab Konawe Selatan, Andoolo — Telp. (0401) 319-2026</p>
+                <div class="card-title">Tanda Bukti Pendaftaran Pencari Kerja (AK-1)</div>
+              </div>
+            </div>
+
+            <div class="meta-bar">
+              <div><strong>No. Pendaftaran:</strong> <span style="font-family: monospace; color: #1e3a8a;">${data.nomorAk1 || data.nomorPengajuan}</span></div>
+              <div><strong>Berlaku s/d:</strong> <span>${data.masaBerlaku || '2 Tahun Sejak Terbit'}</span></div>
+            </div>
+
+            <div class="grid-body">
+              <div class="photo-col">
+                <div class="photo-box">
+                  ${data.foto ? `<img src="${data.foto}" style="width:100%;height:100%;object-fit:cover;border-radius:3px;" />` : `Pas Foto 3x4 Resmi`}
+                </div>
+                <div class="qr-box">
+                  <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin: 0 auto; display: block;">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                  </svg>
+                  <span>Validasi Digital</span>
+                </div>
+              </div>
+
+              <table class="data-table">
+                <tr>
+                  <td class="label">Nomor Induk (NIK)</td>
+                  <td class="val" style="font-family: monospace;">${data.nikMasked}</td>
+                </tr>
+                <tr>
+                  <td class="label">Nama Lengkap</td>
+                  <td class="val" style="text-transform: uppercase;">${data.nama}</td>
+                </tr>
+                ${data.tempatLahir || data.tanggalLahir ? `
+                <tr>
+                  <td class="label">Tempat / Tgl Lahir</td>
+                  <td class="val">${data.tempatLahir || '-'}${data.tanggalLahir ? `, ${data.tanggalLahir}` : ''}</td>
+                </tr>` : ''}
+                ${data.jenisKelamin ? `
+                <tr>
+                  <td class="label">Jenis Kelamin</td>
+                  <td class="val">${data.jenisKelamin}</td>
+                </tr>` : ''}
+                <tr>
+                  <td class="label">Wilayah Domisili</td>
+                  <td class="val">${data.alamat || data.kecamatan || 'Kabupaten Konawe Selatan'}</td>
+                </tr>
+                <tr>
+                  <td class="label">Tanggal Terbit</td>
+                  <td class="val">${formatDateId(data.tanggalUpdate)}</td>
+                </tr>
+                <tr>
+                  <td class="label">Status Keabsahan</td>
+                  <td class="val" style="color: #065f46;">Dokumen Sah Elektronik (BSrE Verified)</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="terms">
+              <strong>Ketentuan Pemegang Kartu AK-1:</strong>
+              <ul>
+                <li>Kartu ini berlaku selama 2 (dua) tahun terhitung sejak tanggal dikeluarkan.</li>
+                <li>Wajib melapor ke Disnakertrans Konsel atau melalui portal PERAK setiap 6 (enam) bulan sekali bila belum mendapatkan pekerjaan.</li>
+                <li>Apabila telah diterima bekerja, pemegang kartu wajib melaporkan status penempatan kerja.</li>
+              </ul>
+            </div>
+          </div>
+
+          <script>
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+              }, 400);
+            };
+          </script>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.open();
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
   };
 
   return (
