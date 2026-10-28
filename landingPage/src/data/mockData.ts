@@ -55,10 +55,11 @@ export const PENGAJUAN_SAMPLES: Record<string, PengajuanDetail> = {
     masaBerlaku: '22 September 2028',
     canPrint: true,
     timeline: [
-      { step: 1, title: 'Pengajuan Terkirim', date: '20 Sep 2026, 09:30 WITA', status: 'completed', desc: 'Pencari kerja melengkapi data dan berkas via portal PERAK' },
-      { step: 2, title: 'Pemeriksaan Berkas', date: '21 Sep 2026, 11:15 WITA', status: 'completed', desc: 'Pengecekan keabsahan KTP, Ijazah, dan Transkrip oleh verifikator' },
-      { step: 3, title: 'Validasi & Penandatanganan', date: '22 Sep 2026, 08:45 WITA', status: 'completed', desc: 'Disetujui oleh Kepala Bidang Penempatan Tenaga Kerja' },
-      { step: 4, title: 'Kartu Siap Dicetak', date: '22 Sep 2026, 09:00 WITA', status: 'completed', desc: 'Kartu AK-1 digital ber-QR Code resmi siap diunduh dan dicetak mandiri' },
+      { step: 1, title: 'Input Data Pemohon', date: '20 Sep 2026, 09:30 WITA', status: 'completed', desc: 'Pemohon mengisi biodata dan mengunggah berkas via portal PERAK' },
+      { step: 2, title: 'Verifikasi Operator', date: '21 Sep 2026, 11:15 WITA', status: 'completed', desc: 'Pemeriksaan keabsahan KTP, Ijazah, dan Pas Foto oleh operator' },
+      { step: 3, title: 'Persetujuan Berkas', date: '21 Sep 2026, 15:30 WITA', status: 'completed', desc: 'Pengajuan disetujui oleh pejabat verifikator Disnakertrans' },
+      { step: 4, title: 'Penandatanganan TTE', date: '22 Sep 2026, 08:45 WITA', status: 'completed', desc: 'Dokumen AK-1 ditandatangani secara elektronik (TTE) resmi' },
+      { step: 5, title: 'Pencetakan Selesai', date: '22 Sep 2026, 09:00 WITA', status: 'completed', desc: 'Kartu Kuning AK-1 ber-TTE resmi siap diunduh & dicetak mandiri' },
     ],
   },
   'AK1-2026-0002': {
@@ -75,10 +76,11 @@ export const PENGAJUAN_SAMPLES: Record<string, PengajuanDetail> = {
     kecamatan: 'Kec. Ranomeeto',
     canPrint: false,
     timeline: [
-      { step: 1, title: 'Pengajuan Terkirim', date: '26 Sep 2026, 14:10 WITA', status: 'completed', desc: 'Data dan dokumen tersimpan di sistem' },
-      { step: 2, title: 'Proses Verifikasi', date: '27 Sep 2026, 10:00 WITA', status: 'current', desc: 'Petugas sedang mencocokkan data KTP Konsel dan Ijazah asli' },
-      { step: 3, title: 'Persetujuan Pejabat', date: 'Menunggu', status: 'pending', desc: 'Pengesahan dan pembuatan nomor registrasi AK-1' },
-      { step: 4, title: 'Pencetakan Kartu', date: 'Menunggu', status: 'pending', desc: 'Penerbitan dokumen digital siap cetak' },
+      { step: 1, title: 'Input Data Pemohon', date: '26 Sep 2026, 14:10 WITA', status: 'completed', desc: 'Data dan dokumen tersimpan di sistem' },
+      { step: 2, title: 'Verifikasi Operator', date: '27 Sep 2026, 10:00 WITA', status: 'current', desc: 'Operator sedang memvalidasi data KTP Konsel dan Ijazah asli' },
+      { step: 3, title: 'Persetujuan / Penolakan', date: 'Menunggu', status: 'pending', desc: 'Menunggu hasil peninjauan berkas oleh verifikator' },
+      { step: 4, title: 'Penandatanganan TTE', date: 'Menunggu', status: 'pending', desc: 'Penandatanganan digital oleh pejabat berwenang' },
+      { step: 5, title: 'Pencetakan Selesai', date: 'Menunggu', status: 'pending', desc: 'Penerbitan dokumen siap cetak mandiri' },
     ],
   },
   'AK1-2026-0003': {
@@ -95,10 +97,11 @@ export const PENGAJUAN_SAMPLES: Record<string, PengajuanDetail> = {
     kecamatan: 'Kec. Tinanggea',
     canPrint: false,
     timeline: [
-      { step: 1, title: 'Pengajuan Terkirim', date: '25 Sep 2026, 16:40 WITA', status: 'completed', desc: 'Pengajuan awal diterima' },
-      { step: 2, title: 'Catatan Perbaikan', date: '26 Sep 2026, 09:20 WITA', status: 'current', desc: 'Petugas memberikan catatan revisi dokumen ijazah' },
-      { step: 3, title: 'Verifikasi Ulang', date: 'Menunggu Revisi', status: 'pending', desc: 'Menunggu pendaftar mengunggah perbaikan berkas' },
-      { step: 4, title: 'Penerbitan Kartu', date: 'Menunggu', status: 'pending', desc: 'Akan diproses setelah berkas dinyatakan sesuai' },
+      { step: 1, title: 'Input Data Pemohon', date: '25 Sep 2026, 16:40 WITA', status: 'completed', desc: 'Pengajuan awal diterima oleh sistem' },
+      { step: 2, title: 'Verifikasi Operator', date: '26 Sep 2026, 09:20 WITA', status: 'completed', desc: 'Operator memeriksa dokumen pengajuan' },
+      { step: 3, title: 'Catatan Perbaikan', date: '26 Sep 2026, 10:00 WITA', status: 'current', desc: 'Perlu perbaikan: scan ijazah buram / terpotong' },
+      { step: 4, title: 'Penandatanganan TTE', date: 'Menunggu Revisi', status: 'pending', desc: 'Akan diproses setelah revisi berkas disetujui' },
+      { step: 5, title: 'Pencetakan Selesai', date: 'Menunggu', status: 'pending', desc: 'Penerbitan kartu AK-1 digital' },
     ],
   },
   'AK1-2026-0004': {
@@ -115,10 +118,11 @@ export const PENGAJUAN_SAMPLES: Record<string, PengajuanDetail> = {
     kecamatan: 'Kec. Palangga',
     canPrint: false,
     timeline: [
-      { step: 1, title: 'Pengajuan Diterima', date: '28 Sep 2026, 08:30 WITA', status: 'current', desc: 'Pengajuan berhasil terdaftar di server' },
-      { step: 2, title: 'Pemeriksaan Berkas', date: 'Menunggu Antrean', status: 'pending', desc: 'Segera diperiksa oleh petugas' },
-      { step: 3, title: 'Validasi', date: 'Menunggu', status: 'pending', desc: 'Persetujuan penerbitan' },
-      { step: 4, title: 'Penerbitan Kartu', date: 'Menunggu', status: 'pending', desc: 'Siap dicetak' },
+      { step: 1, title: 'Input Data Pemohon', date: '28 Sep 2026, 08:30 WITA', status: 'completed', desc: 'Pengajuan berhasil terdaftar di server' },
+      { step: 2, title: 'Verifikasi Operator', date: 'Dalam Antrean', status: 'current', desc: 'Menunggu antrean verifikasi berkas oleh operator' },
+      { step: 3, title: 'Persetujuan / Penolakan', date: 'Menunggu', status: 'pending', desc: 'Penetapan status persetujuan berkas' },
+      { step: 4, title: 'Penandatanganan TTE', date: 'Menunggu', status: 'pending', desc: 'Penandatanganan elektronik resmi' },
+      { step: 5, title: 'Pencetakan Selesai', date: 'Menunggu', status: 'pending', desc: 'Penerbitan kartu AK-1' },
     ],
   },
 };
@@ -212,8 +216,8 @@ export const FAQS_LIST: FaqItem[] = [
   {
     id: 'faq-4',
     kategori: 'Proses',
-    pertanyaan: 'Bagaimana cara melakukan pendaftaran Kartu Kuning secara digital?',
-    jawaban: 'Langkah pendaftaran sangat mudah: 1) Klik tombol "Daftar Kartu Kuning" di halaman utama portal PERAK, 2) Buat akun atau isi data identitas sesuai KTP, 3) Lengkapi riwayat pendidikan dan minat keahlian, 4) Unggah hasil pindai/foto dokumen persyaratan yang jelas, lalu 5) Kirim pengajuan untuk diverifikasi oleh petugas Disnakertrans.',
+    pertanyaan: 'Bagaimana alur tahapan permohonan Kartu Kuning ber-TTE di PERAK?',
+    jawaban: 'Alur pelayanan meliputi 5 tahapan terpadu: 1) Masyarakat input data & berkas persyaratan secara daring, 2) Operator memverifikasi kelengkapan administrasi, 3) Persetujuan atau penolakan dengan catatan perbaikan oleh pejabat verifikator, 4) Penandatanganan secara elektronik (TTE) resmi oleh Kepala Dinas/Pejabat berwenang, dan 5) Pencetakan kartu selesai yang dapat diunduh dan dicetak mandiri.',
   },
   {
     id: 'faq-5',
@@ -230,8 +234,8 @@ export const FAQS_LIST: FaqItem[] = [
   {
     id: 'faq-7',
     kategori: 'Pencetakan',
-    pertanyaan: 'Bagaimana cara mencetak Kartu Kuning setelah disetujui?',
-    jawaban: 'Setelah status pengajuan dinyatakan "Disetujui / Kartu Siap Dicetak", tombol "Cetak Kartu Kuning" akan aktif. Anda dapat langsung mengunduh file PDF resmi Kartu AK-1 yang telah dilengkapi QR-Code pengesahan digital, lalu mencetaknya secara mandiri menggunakan kertas A4 atau kertas tebal tanpa harus antre di kantor dinas.',
+    pertanyaan: 'Bagaimana cara mencetak Kartu Kuning setelah proses TTE selesai?',
+    jawaban: 'Setelah penandatanganan TTE selesai, status pengajuan Anda akan menjadi "Disetujui & Siap Dicetak". Anda dapat langsung mengunduh file PDF resmi Kartu AK-1 yang telah bertanda tangan elektronik (TTE) sah, lalu mencetaknya secara mandiri menggunakan kertas A4 tanpa perlu legalisir manual lagi.',
   },
   {
     id: 'faq-8',
